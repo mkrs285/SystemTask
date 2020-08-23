@@ -1,0 +1,163 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+// Kotlin Annotation Processor
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.example.systemtask"
+        minSdkVersion 16
+        targetSdkVersion 29
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "env"
+
+    productFlavors {
+
+        final TEST_VERSION = "0.0.0.1"
+
+        staging {
+            versionCode 1
+            versionName TEST_VERSION + "_DEV"
+            buildConfigField "boolean", "IS_PROD", "false"
+            buildConfigField "String", "BASE_URL", '"https://dl.dropboxusercontent.com"'
+        }
+
+        prod {
+            versionCode 1
+            versionName "1.0.0"
+            buildConfigField "boolean", "IS_PROD", "true"
+            buildConfigField "String", "BASE_URL", '"https://dl.dropboxusercontent.com"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                systemProperty 'robolectric.dependency.repo.id', 'central'
+                systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2/'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.0'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+
+    // LifeCycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // Dagger2
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation "com.google.dagger:dagger-android:$dagger2_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger2_version"
+    implementation 'com.android.support:support-v4:28.0.0'
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger2_version"
+
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version") {
+        // exclude Retrofit’s OkHttp dependency module and define your own module import
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //swipeRefreshLayout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //ButterKnife
+    implementation "com.jakewharton:butterknife:$butterKnife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnife_version"
+
+    //multiDex
+    implementation 'com.android.support:multidex:1.0.3'
+
+
+    /** Test **/
+    // JUnit
+    testImplementation 'junit:junit:4.12'
+    // AndroidX
+    testImplementation "androidx.arch.core:core-testing:$androidXArchCoreTestingVersion"
+    // Mock
+    testImplementation "com.nhaarman:mockito-kotlin:$nhaarmanMockVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+
+
+    /** Android Test **/
+    // AndroidX
+
+
+    implementation ("androidx.fragment:fragment-testing:1.1.0-beta01", {
+        exclude group: 'androidx.test', module: 'core'
+    })
+
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
+    androidTestImplementation "androidx.test:core:$androidXTestCoreVersion"
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    // Mock
+    androidTestImplementation "com.nhaarman:mockito-kotlin:$nhaarmanMockVersion"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    //Robolectric
+    testImplementation  'org.robolectric:robolectric:4.3'
+    testImplementation 'org.robolectric:android-all:4.1.2_r1-robolectric-0'
+    debugImplementation 'androidx.test:core:1.2.0'
+
+}

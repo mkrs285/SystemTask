@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-70dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_20">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/margin_04"
+            app:cardCornerRadius="@dimen/margin_04"
+            app:cardElevation="@dimen/margin_04"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|center|end">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_04"
+                    android:layout_marginBottom="@dimen/margin_04"
+                    android:gravity="center"
+                    android:text="@string/inka_restaurant"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_18" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10">
+
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_04"
+                        android:layout_marginBottom="@dimen/margin_04"
+                        android:drawableLeft="@drawable/ic_baseline_star_border_24"
+                        android:gravity="center"
+                        android:text="@string/_5_0_200"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/textSize_16" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_04"
+                        android:layout_marginBottom="@dimen/margin_04"
+                        android:gravity="center"
+                        android:text="@string/all_days"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/textSize_16" />
+
+                    <TextView
+                        android:id="@+id/tvTimeSlot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_04"
+                        android:layout_marginBottom="@dimen/margin_04"
+                        android:gravity="center"
+                        android:text="@string/_09_00_am_06_00_pm"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/textSize_16" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_04"
+                        android:layout_marginBottom="@dimen/margin_04"
+                        android:drawableLeft="@drawable/ic_baseline_call_24"
+                        android:drawablePadding="@dimen/margin_04"
+                        android:gravity="center"
+                        android:text="@string/reach_us_at"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/textSize_16" />
+
+                    <TextView
+                        android:id="@+id/tvPhnNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_04"
+                        android:layout_marginBottom="@dimen/margin_04"
+                        android:gravity="center"
+                        android:text="@string/_1234567890"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/textSize_16" />
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnBook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@drawable/btn_round"
+                    android:padding="@dimen/padding_10"
+                    android:text="@string/book_a_table"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textSize_18" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSize_18"
+            android:layout_marginTop="@dimen/margin_10"
+            android:textColor="@android:color/black"
+            android:text="@string/starter"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvItems"
+           android:layout_marginTop="@dimen/margin_10"
+           android:layout_width="match_parent"
+           tools:listitem="@layout/rv_item_layout"
+           android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
