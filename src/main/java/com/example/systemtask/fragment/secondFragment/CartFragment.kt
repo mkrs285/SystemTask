@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.systemtask.R
 import com.example.systemtask.activity.MainActivity
 import com.example.systemtask.adapter.RvAdapter
+import com.example.systemtask.base.BaseActivity
 import com.example.systemtask.base.BaseFragment
 import com.example.systemtask.dialog.CustomDialog
 import com.example.systemtask.fragment.MenuUIModel
@@ -40,6 +41,10 @@ class CartFragment @Inject constructor() : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false)
+    }
+
+    override fun injectDependencies(baseActivity: BaseActivity?) {
+        baseActivity?.getMenuComponent()?.inject(this)
     }
 
     override fun setup(view: View) {

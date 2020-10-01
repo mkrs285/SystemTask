@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.systemtask.R
 import com.example.systemtask.activity.MainActivity
 import com.example.systemtask.adapter.RvAdapter
+import com.example.systemtask.base.BaseActivity
 import com.example.systemtask.base.BaseFragment
 import com.example.systemtask.dialog.CustomDialog
 import com.example.systemtask.fragment.secondFragment.CartFragment
@@ -46,6 +47,12 @@ class MenuFragment @Inject constructor() : BaseFragment() {
             savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.facts_layout_fragment, container, false)
+    }
+
+    override fun injectDependencies(baseActivity: BaseActivity?) {
+        baseActivity?.createMenuComponent()
+        baseActivity?.getMenuComponent()?.inject(this)
+
     }
 
 

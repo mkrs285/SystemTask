@@ -6,9 +6,8 @@ import com.example.systemtask.fragment.MenuInterface
 import com.example.systemtask.network.ApiHelper
 import com.example.systemtask.repo.pojo.Data
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
 class MenuRepository @Inject constructor(
         private val apiHelper: ApiHelper
 ) : MenuInterface {

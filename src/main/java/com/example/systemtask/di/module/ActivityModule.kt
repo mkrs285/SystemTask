@@ -1,17 +1,22 @@
 package com.example.systemtask.di.module
 
-import com.example.systemtask.activity.MainActivity
-import com.example.systemtask.di.scope.ActivityScope
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import com.example.systemtask.di.scope.ActivityContext
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.Provides
 
 @Module
-abstract class ActivityModule {
+class ActivityModule(private var activity: AppCompatActivity?) {
 
-    //Alive until activity lives
-    @ActivityScope
-    @ContributesAndroidInjector(modules = [MenuModule::class,FragmentFactoryModule::class])
-    internal abstract fun contributeMainActivity(): MainActivity
+    @Provides
+    @ActivityContext
+    fun provideContext(): Context? {
+        return activity
+    }
 
-
+    @Provides
+    fun provideActivity(): AppCompatActivity? {
+        return activity
+    }
 }

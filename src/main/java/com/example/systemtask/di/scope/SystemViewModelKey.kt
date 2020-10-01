@@ -6,6 +6,6 @@ import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.FUNCTION)
 @MapKey
-internal annotation class WiproViewModelKey(
+internal annotation class SystemViewModelKey(
     val value: KClass<out ViewModel>
 )

@@ -1,5 +1,6 @@
 package com.example.systemtask.di.module
 
+import android.app.Application
 import com.example.systemtask.BuildConfig
 import com.example.systemtask.constants.NetworkConstants
 import dagger.Module
@@ -8,7 +9,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class AppModule() {
+class AppModule(private var mApplication: Application) {
 
 
     @Singleton
